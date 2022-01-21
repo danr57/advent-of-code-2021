@@ -9,14 +9,18 @@ import (
 )
 
 func main() {
-	log.Println("Day 1")
+
 	d1input := readAndSplit("d1/input")
-	log.Println(d1.Part1(d1input))
+	log.Printf("===Day 1=== \nPart 1: %v", d1.Part1(d1input))
 
 }
 
 func readAndSplit(s string) []string {
 	i, err := ioutil.ReadFile(s)
+
+	if len(i) < 1 {
+		log.Fatalf("Error: %v is empty. Please populate and retry", s)
+	}
 
 	if err != nil {
 		log.Fatal("Error reading input file:", err)

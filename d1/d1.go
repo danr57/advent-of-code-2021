@@ -5,13 +5,12 @@ import (
 	"strconv"
 )
 
-var (
-	count int = 0
-	x     int = 0
-)
-
 func Part1(s []string) int {
-	for _, n := range s {
+
+	x := 0
+	var count int
+
+	for _, n := range s[1:] {
 
 		t, err := strconv.Atoi(n)
 		if err != nil {
