@@ -10,12 +10,12 @@ import (
 
 func main() {
 
-	d1input := readAndSplit("d1/input")
+	d1input := ReadAndSplit("d1/input")
 	log.Printf("===Day 1=== \nPart 1: %v", d1.Part1(d1input))
 
 }
 
-func readAndSplit(s string) []string {
+func ReadAndSplit(s string) []string {
 	i, err := ioutil.ReadFile(s)
 
 	if len(i) < 1 {
