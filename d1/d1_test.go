@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/danr57/advent-of-code-2022/d1"
+	"github.com/danr57/advent-of-code-2022/reader"
 )
 
 var (
@@ -20,12 +21,15 @@ var (
 		"260",
 		"263",
 	}
-	input = []string{}
+	input = reader.ReadAndSplit("input")
 	sol   = 1759
 )
 
 func TestPart1(t *testing.T) {
+	t.Parallel()
+
 	t.Run("Sample", func(t *testing.T) {
+		t.Parallel()
 
 		r := d1.Part1(sample)
 
@@ -36,6 +40,7 @@ func TestPart1(t *testing.T) {
 	})
 
 	t.Run("ok fr this time", func(t *testing.T) {
+		t.Parallel()
 		r := d1.Part1(input)
 
 		if r != sol {
