@@ -4,9 +4,9 @@ A repo of my solutions to the [2021 Advent of Code](https://adventofcode.com/202
 ### Days/Stars:
 |📅          |Stars|
 |------------|-----|
-| [1](d1) |🌟   |
-| [2](d2) |🌟🌟 |
-| [3](d3) |     |
+| [1](d1) | 🌟🌟 |
+| [2](d2) | 🌟🌟 |
+| [3](d3) |      |
 
 ## Mission brief
 You're minding your own business on a ship at sea when the overboard alarm goes off! You rush to see if you can help. Apparently, one of the Elves tripped and accidentally sent the sleigh keys flying into the ocean!
