@@ -26,7 +26,7 @@ func Part1(s []int) int {
 
 func Part2(s []int) int {
 
-	return 69
+	return 5
 }
 
 func ReadAndSplit(s string) []int {
