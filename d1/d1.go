@@ -8,31 +8,52 @@ import (
 	"strings"
 )
 
-func Part1(s []int) int {
+// Analyses depth readings to count how many times the readings increase
+func Part1(r []int) int {
 
-	x := 0
+	prev := 0
 	var count int
 
-	for _, n := range s[1:] {
+	for _, n := range r[1:] {
 
-		if n > x {
+		if n > prev {
 			count++
 		}
-		x = n
+		prev = n
 	}
 
 	return count
 }
 
-func Part2(s []int) int {
+// Same as Part1() but analyses readings in sliding windows of 3
+func Part2(r []int) int {
+	window := 3
+	var count int
+	var prev int
 
-	return 5
+	for i := range r[:len(r)-(window-1)] {
+		if i == 0 {
+			prev = r[i] + r[i+1] + r[i+2]
+			continue
+		}
+
+		reading := r[i] + r[i+1] + r[i+2]
+
+		if reading > prev {
+			count++
+		}
+		prev = reading
+
+	}
+	log.Println(count)
+	return count
 }
 
-func ReadAndSplit(s string) []int {
-	input, err := os.ReadFile(filepath.Clean(s))
+// Read input file and split line separated values into an []int readable by Part1() and Part2()
+func ReadAndSplit(r string) []int {
+	input, err := os.ReadFile(filepath.Clean(r))
 	if err != nil {
-		log.Fatalf("Error reading file \"%v\": %v", s, err)
+		log.Fatalf("Error reading file \"%v\": %v", r, err)
 	}
 
 	p := strings.Split(string(input), "\n")

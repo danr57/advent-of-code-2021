@@ -22,7 +22,8 @@ var (
 		263,
 	}
 	input = d1.ReadAndSplit("input")
-	sol   = 1759
+	sol1  = 1759
+	sol2  = 1805
 )
 
 func TestPart1(t *testing.T) {
@@ -43,8 +44,8 @@ func TestPart1(t *testing.T) {
 		t.Parallel()
 		r := d1.Part1(input)
 
-		if r != sol {
-			t.Fatalf("Expected: %v. Got: %v", sol, r)
+		if r != sol1 {
+			t.Fatalf("Expected: %v. Got: %v", sol1, r)
 
 		}
 
@@ -61,6 +62,16 @@ func TestPart2(t *testing.T) {
 
 		if r != ans2 {
 			t.Fatalf("Expected: %v. Got: %v", ans2, r)
+		}
+	})
+
+	t.Run("Actual input", func(t *testing.T) {
+		t.Parallel()
+
+		r := d1.Part2(input)
+
+		if r != sol2 {
+			t.Fatalf("Expected: %v. Got: %v", sol2, r)
 		}
 	})
 }
