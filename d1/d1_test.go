@@ -40,7 +40,7 @@ func TestPart1(t *testing.T) {
 		}
 	})
 
-	t.Run("ok fr this time", func(t *testing.T) {
+	t.Run("Actual", func(t *testing.T) {
 		t.Parallel()
 		r := d1.Part1(input)
 
