@@ -4,24 +4,24 @@ import (
 	"testing"
 
 	"github.com/danr57/advent-of-code-2022/d1"
-	"github.com/danr57/advent-of-code-2022/reader"
 )
 
 var (
-	ans    = 7
-	sample = []string{
-		"199",
-		"200",
-		"208",
-		"210",
-		"200",
-		"207",
-		"240",
-		"269",
-		"260",
-		"263",
+	ans1   = 7
+	ans2   = 5
+	sample = []int{
+		199,
+		200,
+		208,
+		210,
+		200,
+		207,
+		240,
+		269,
+		260,
+		263,
 	}
-	input = reader.ReadAndSplit("input")
+	input = d1.ReadAndSplit("input")
 	sol   = 1759
 )
 
@@ -33,8 +33,8 @@ func TestPart1(t *testing.T) {
 
 		r := d1.Part1(sample)
 
-		if r != ans {
-			t.Fatalf("Expected: %v. Got: %v", ans, r)
+		if r != ans1 {
+			t.Fatalf("Expected: %v. Got: %v", ans1, r)
 
 		}
 	})
@@ -48,5 +48,19 @@ func TestPart1(t *testing.T) {
 
 		}
 
+	})
+}
+
+func TestPart2(t *testing.T) {
+	t.Parallel()
+
+	t.Run("Sample", func(t *testing.T) {
+		t.Parallel()
+
+		r := d1.Part2(sample)
+
+		if r != ans2 {
+			t.Fatalf("Expected: %v. Got: %v", ans2, r)
+		}
 	})
 }
