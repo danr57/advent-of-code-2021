@@ -8,55 +8,49 @@ import (
 	"strings"
 )
 
-func Part1(route []string) int {
+type Direction struct {
+	Direction string
+	Distance  int
+}
+
+func Part1(route []Direction) int {
 	x := 0
 	y := 0
 
 	for _, d := range route {
-		t := strings.Split(string(d), " ")
-		n, _ := strconv.Atoi(t[1])
-		switch t[0] {
+		switch d.Direction {
 		case "up":
-			y -= n
+			y -= d.Distance
 		case "down":
-			y += n
+			y += d.Distance
 		case "forward":
-			x += n
-		case "backward":
-			x -= n
+			x += d.Distance
 		}
 	}
 	return x * y
 }
 
-func Part2(route []string) int {
+func Part2(route []Direction) int {
 	a := 0
 	x := 0
 	y := 0
 
 	for _, d := range route {
-		t := strings.Split(string(d), " ")
-		n, _ := strconv.Atoi(t[1])
-		switch t[0] {
+		switch d.Direction {
 		case "up":
-			a -= n
+			a += d.Distance
 		case "down":
-			a += n
+			a -= d.Distance
 		case "forward":
-			x += n
-			y -= (a * n)
-		case "backward":
-			x -= n
+			x += d.Distance
+			y -= (a * d.Distance)
 		}
 	}
 
-	// TODO: This is returning the answer as a negative int
-	// TODO: Problem demands a positive result
 	return x * y
 }
 
-// TODO: Process input to a better structure
-func ReadAndSplit(r string) []string {
+func ReadAndSplit(r string) []Direction {
 	input, err := os.ReadFile(filepath.Clean(r))
 	if err != nil {
 		log.Fatalf("Error reading file \"%v\": %v", r, err)
@@ -66,5 +60,22 @@ func ReadAndSplit(r string) []string {
 		log.Fatalf("Data input empty. Please populate")
 	}
 
-	return strings.Split(string(input), "\n")
+	list := strings.Split(string(input), "\n")
+
+	route := make([]Direction, len(list))
+
+	for i, dir := range list {
+		split := strings.Split(string(dir), " ")
+
+		distance, err := strconv.Atoi(split[1])
+		if err != nil {
+			log.Fatalf("Error converting distance %v to int. Error: %v", split[1], err)
+		}
+
+		step := Direction{split[0], distance}
+
+		route[i] = step
+	}
+
+	return route
 }

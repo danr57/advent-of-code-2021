@@ -9,14 +9,13 @@ import (
 var (
 	ans1   = 150
 	ans2   = 900
-	sample = []string{
-		"forward 5",
-		"down 5",
-		"forward 8",
-		"up 3",
-		"down 8",
-		"forward 2",
-	}
+	sample = []d2.Direction{
+		{Direction: "forward", Distance: 5},
+		{Direction: "down", Distance: 5},
+		{Direction: "forward", Distance: 8},
+		{Direction: "up", Distance: 3},
+		{Direction: "down", Distance: 8},
+		{Direction: "forward", Distance: 2}}
 )
 
 func TestPart1(t *testing.T) {
