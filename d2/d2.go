@@ -8,12 +8,13 @@ import (
 	"strings"
 )
 
-type Direction struct {
+// Describes a move of the submarine.
+type Move struct {
 	Direction string
 	Distance  int
 }
 
-func Part1(route []Direction) int {
+func Part1(route []Move) int {
 	x := 0
 	y := 0
 
@@ -27,10 +28,11 @@ func Part1(route []Direction) int {
 			x += d.Distance
 		}
 	}
+
 	return x * y
 }
 
-func Part2(route []Direction) int {
+func Part2(route []Move) int {
 	a := 0
 	x := 0
 	y := 0
@@ -50,7 +52,8 @@ func Part2(route []Direction) int {
 	return x * y
 }
 
-func ReadAndSplit(r string) []Direction {
+// Formats input file into a submarine route as []Moves.
+func ReadAndSplit(r string) []Move {
 	input, err := os.ReadFile(filepath.Clean(r))
 	if err != nil {
 		log.Fatalf("Error reading file \"%v\": %v", r, err)
@@ -62,7 +65,7 @@ func ReadAndSplit(r string) []Direction {
 
 	list := strings.Split(string(input), "\n")
 
-	route := make([]Direction, len(list))
+	route := make([]Move, len(list))
 
 	for i, dir := range list {
 		split := strings.Split(string(dir), " ")
@@ -72,7 +75,7 @@ func ReadAndSplit(r string) []Direction {
 			log.Fatalf("Error converting distance %v to int. Error: %v", split[1], err)
 		}
 
-		step := Direction{split[0], distance}
+		step := Move{split[0], distance}
 
 		route[i] = step
 	}

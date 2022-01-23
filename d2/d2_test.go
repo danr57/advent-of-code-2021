@@ -9,7 +9,7 @@ import (
 var (
 	ans1   = 150
 	ans2   = 900
-	sample = []d2.Direction{
+	sample = []d2.Move{
 		{Direction: "forward", Distance: 5},
 		{Direction: "down", Distance: 5},
 		{Direction: "forward", Distance: 8},

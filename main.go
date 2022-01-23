@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-
 	d1input := d1.ReadAndSplit("d1/input")
 	log.Printf("===Day 1=== \nPart 1: %v \nPart 2: %v", d1.Part1(d1input), d1.Part2(d1input))
 

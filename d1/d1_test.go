@@ -36,7 +36,6 @@ func TestPart1(t *testing.T) {
 
 		if r != ans1 {
 			t.Fatalf("Expected: %v. Got: %v", ans1, r)
-
 		}
 	})
 
@@ -46,9 +45,7 @@ func TestPart1(t *testing.T) {
 
 		if r != sol1 {
 			t.Fatalf("Expected: %v. Got: %v", sol1, r)
-
 		}
-
 	})
 }
 
