@@ -9,10 +9,7 @@ import (
 	"strings"
 )
 
-var (
-	inputLength int
-)
-
+// Gets decimal value of binary string entry
 func BinaryStrToInt64(in string) int64 {
 	base := 2
 	bitSize := 64
@@ -25,9 +22,13 @@ func BinaryStrToInt64(in string) int64 {
 	return val
 }
 
+/* Finds most/least common digit at each index for all readings,
+returns multiplied decimal versions of these 2 values*/
 func Part1(r []string) int {
-	var gamma bytes.Buffer
-	var epsilon bytes.Buffer
+	var gamma bytes.Buffer   // most common digits per index
+	var epsilon bytes.Buffer // least common digits per index
+
+	inputLength := len(r[0])
 
 	for i := 0; i < inputLength; i++ {
 		count0s := 0
@@ -53,7 +54,6 @@ func Part1(r []string) int {
 
 	gammaDecimal := BinaryStrToInt64(gamma.String())
 	epsilonDecimal := BinaryStrToInt64(epsilon.String())
-	log.Println(gammaDecimal * epsilonDecimal)
 	return int(gammaDecimal * epsilonDecimal)
 }
 
@@ -73,8 +73,6 @@ func ReadAndSplit(r string) []string {
 	}
 
 	report := strings.Split(string(input), "\n")
-
-	inputLength = len(report[0])
 
 	return report
 
