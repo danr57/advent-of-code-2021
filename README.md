@@ -1,5 +1,7 @@
 # 🐿️ Advent of Code 2021 🐿️
 A repo of my solutions to the [2021 Advent of Code](https://adventofcode.com/2021/) by [@topaz](https://github.com/topaz).
+Script for generating subfolder READMEs by [@ikadix](https://github.com/ikadix) <3
+
 
 ### Days/Stars:
 |📅          |Stars|
