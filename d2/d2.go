@@ -1,3 +1,4 @@
+// Package d2 contains the solution for https://adventofcode.com/2021/day/2
 package d2
 
 import (
@@ -8,51 +9,53 @@ import (
 	"strings"
 )
 
-// Describes a move of the submarine.
+// Move describes a move of the submarine during its route.
 type Move struct {
 	Direction string
 	Distance  int
 }
 
+// Part1 takes the planned route of submarine and calculates final destination.
 func Part1(route []Move) int {
-	x := 0
-	y := 0
+	travel := 0
+	depth := 0
 
-	for _, d := range route {
-		switch d.Direction {
+	for _, move := range route {
+		switch move.Direction {
 		case "up":
-			y -= d.Distance
+			depth -= move.Distance
 		case "down":
-			y += d.Distance
+			depth += move.Distance
 		case "forward":
-			x += d.Distance
+			travel += move.Distance
 		}
 	}
 
-	return x * y
+	return travel * depth
 }
 
+// Part2 calculates final destination of the sub by adjusting aim over depth.
 func Part2(route []Move) int {
-	a := 0
-	x := 0
-	y := 0
+	aim := 0
+	movement := 0
+	depth := 0
 
-	for _, d := range route {
-		switch d.Direction {
+	for _, move := range route {
+		switch move.Direction {
 		case "up":
-			a += d.Distance
+			aim += move.Distance
 		case "down":
-			a -= d.Distance
+			aim -= move.Distance
 		case "forward":
-			x += d.Distance
-			y -= (a * d.Distance)
+			movement += move.Distance
+			depth -= (aim * move.Distance)
 		}
 	}
 
-	return x * y
+	return movement * depth
 }
 
-// Formats input file into a submarine route as []Moves.
+// ReadAndSplit input file into a submarine route as array of Moves.
 func ReadAndSplit(r string) []Move {
 	input, err := os.ReadFile(filepath.Clean(r))
 	if err != nil {
@@ -67,8 +70,8 @@ func ReadAndSplit(r string) []Move {
 
 	route := make([]Move, len(list))
 
-	for i, dir := range list {
-		split := strings.Split(string(dir), " ")
+	for index, dir := range list {
+		split := strings.Split(dir, " ")
 
 		distance, err := strconv.Atoi(split[1])
 		if err != nil {
@@ -77,7 +80,7 @@ func ReadAndSplit(r string) []Move {
 
 		step := Move{split[0], distance}
 
-		route[i] = step
+		route[index] = step
 	}
 
 	return route

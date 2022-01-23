@@ -26,17 +26,17 @@ var (
 )
 
 func TestPart1(t *testing.T) {
-	r := d3.Part1(sample)
+	t.Parallel()
 
-	if r != ans1 {
+	if r := d3.Part1(sample); r != ans1 {
 		log.Fatalf("Expected: %v. Got: %v", ans1, r)
 	}
 }
 
 func TestBinaryStrToInt64(t *testing.T) {
-	r := d3.BinaryStrToInt64("10110")
+	t.Parallel()
 
-	if r != 22 {
-		log.Fatalf("Expected 22. Got: %v", r)
+	if r := d3.BinaryStrToInt64("10110"); r != 22 {
+		log.Fatalf("Expected: %v. Got: %v", 22, r)
 	}
 }

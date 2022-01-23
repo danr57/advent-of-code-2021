@@ -1,3 +1,4 @@
+// Package d3 contains the solution for https://adventofcode.com/2021/day/3
 package d3
 
 import (
@@ -9,7 +10,7 @@ import (
 	"strings"
 )
 
-// Gets decimal value of binary string entry.
+// BinaryStrToInt64 Gets decimal value of binary value in string format.
 func BinaryStrToInt64(in string) int64 {
 	base := 2
 	bitSize := 64
@@ -22,19 +23,20 @@ func BinaryStrToInt64(in string) int64 {
 	return val
 }
 
-/* Finds most/least common digit at each index for all readings,
+/* Part1 Finds most/least common digit at each index for all readings,
 returns multiplied decimal versions of these 2 values.*/
-func Part1(r []string) int {
-	var gamma bytes.Buffer   // most common digits per index
+func Part1(input []string) int {
+	var gamma bytes.Buffer // most common digits per index
+
 	var epsilon bytes.Buffer // least common digits per index
 
-	inputLength := len(r[0])
+	inputLength := len(input[0])
 
 	for i := 0; i < inputLength; i++ {
 		count0s := 0
 		count1s := 0
 
-		for _, num := range r {
+		for _, num := range input {
 			switch num[i : i+1] {
 			case "0":
 				count0s++
@@ -54,14 +56,18 @@ func Part1(r []string) int {
 
 	gammaDecimal := BinaryStrToInt64(gamma.String())
 	epsilonDecimal := BinaryStrToInt64(epsilon.String())
+
 	return int(gammaDecimal * epsilonDecimal)
 }
 
+// Part2 will contain the solution for Day 3 Part 2 of AOC2021.
+// TODO: Complete Part2 solution.
 func Part2(r []string) int {
 	return 0
 }
 
-// Read input file and split line separated values into an []int readable by Part1() and Part2().
+/* ReadAndSplit takes input file and splits line separated values
+into an []int readable by Part1() and Part2().*/
 func ReadAndSplit(r string) []string {
 	input, err := os.ReadFile(filepath.Clean(r))
 	if err != nil {
