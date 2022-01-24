@@ -1,4 +1,4 @@
-# 🐿️ Advent of Code 2021 🐿️
+# 🐿️ Advent of Code 2021 🐿️ [![Lint and Test](https://github.com/danr57/advent-of-code-2021/actions/workflows/main.yml/badge.svg)](https://github.com/danr57/advent-of-code-2021/actions/workflows/main.yml)
 A repo of my solutions to the [2021 Advent of Code](https://adventofcode.com/2021/) by [@topaz](https://github.com/topaz).
 
 [Script](getDayInformation.js) for generating subfolder READMEs by [@ikadix](https://github.com/ikadix) <3

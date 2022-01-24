@@ -60,10 +60,55 @@ func Part1(input []string) int {
 	return int(gammaDecimal * epsilonDecimal)
 }
 
-// Part2 will contain the solution for Day 3 Part 2 of AOC2021.
-// TODO: Complete Part2 solution.
-func Part2(r []string) int {
-	return 0
+// Part2 verifies the life support rating of the submarine.
+func Part2(input []string) int {
+	inputLength := len(input[0])
+
+	newInput := input
+
+	for index := 0; index < inputLength; index++ {
+		count0s := 0
+		count1s := 0
+
+		for _, num := range newInput {
+			switch num[index : index+1] {
+			case "0":
+				count0s++
+			case "1":
+				count1s++
+			}
+		}
+
+		switch {
+		case count0s > count1s:
+			newInput = purgeValues(input, "0", index)
+		case count1s > count0s:
+			newInput = purgeValues(input, "1", index)
+		case count0s == count1s:
+			newInput = purgeValues(input, "1", index)
+		}
+
+		input = newInput
+	}
+
+	return len(newInput)
+}
+
+func purgeValues(input []string, match string, index int) []string {
+	purgedEntries := 0
+
+	for _, num := range input {
+		log.Println("REACHED") // TODO remove debug line
+
+		if num[index:index+1] != match {
+			input[index] = input[len(input)-1]
+			purgedEntries++
+		}
+	}
+
+	log.Println(purgedEntries) // TODO remove debug line
+
+	return input[:len(input)-purgedEntries]
 }
 
 /* ReadAndSplit takes input file and splits line separated values
