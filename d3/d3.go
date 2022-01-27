@@ -62,12 +62,18 @@ func Part1(input []string) int {
 
 // Part2 verifies the life support rating of the submarine.
 func Part2(input []string) int {
-	inputLength := len(input[0])
+	var (
+		inputLength  = len(input[0])
+		newInput     = input
+		oxygenRating int
+		co2Rating    int
+	)
 
 	newInput := input
 
 	for index := 0; index < inputLength; index++ {
 		count0s := 0
+
 		count1s := 0
 
 		for _, num := range newInput {
@@ -79,26 +85,29 @@ func Part2(input []string) int {
 			}
 		}
 
-		switch {
-		case count0s > count1s:
-			newInput = purgeValues(input, "0", index)
-		case count1s > count0s:
-			newInput = purgeValues(input, "1", index)
-		case count0s == count1s:
-			newInput = purgeValues(input, "1", index)
+		if len(input) > 1 {
+			switch {
+			case count0s > count1s:
+				newInput = purgeValues(input, "0", index)
+			case count0s < count1s:
+				newInput = purgeValues(input, "1", index)
+			case count0s == count1s:
+				newInput = purgeValues(input, "1", index)
+			}
 		}
 
 		input = newInput
+		log.Println("Input Length: ", len(input))
 	}
 
-	return len(newInput)
+	return len(input)
 }
 
 func purgeValues(input []string, match string, index int) []string {
 	purgedEntries := 0
 
 	for _, num := range input {
-		log.Println("REACHED") // TODO remove debug line
+		// log.Println("REACHED") // TODO remove debug line
 
 		if num[index:index+1] != match {
 			input[index] = input[len(input)-1]
@@ -106,7 +115,8 @@ func purgeValues(input []string, match string, index int) []string {
 		}
 	}
 
-	log.Println(purgedEntries) // TODO remove debug line
+	log.Println("Purged entries:", purgedEntries) // TODO remove debug lines
+	log.Println("Current Input Length: ", len(input))
 
 	return input[:len(input)-purgedEntries]
 }
