@@ -75,6 +75,7 @@ func Part2(input []string) int64 {
 	return BinaryStrToInt64(oxygenRating[0]) * BinaryStrToInt64(co2Rating[0])
 }
 
+//nolint:ifshort // False positive
 // finds most common bit at index position and purges it.
 func findRatings(input []string, keep bool, index int) []string {
 	count0s := 0
@@ -89,17 +90,17 @@ func findRatings(input []string, keep bool, index int) []string {
 		}
 	}
 
-	if len(input) > 1 {
-		if count0s > count1s {
-			input = purgeValues(input, "0", index, keep)
-		} else {
-			input = purgeValues(input, "1", index, keep)
-		}
+	if count0s > count1s {
+		input = purgeValues(input, "0", index, keep)
+	} else {
+		input = purgeValues(input, "1", index, keep)
 	}
 
 	return input
 }
 
+// purgeValues keeps only the matching vals in a newly returned []string
+// note 'keep' cascading bool: true for oxygenRating, false for co2rating.
 func purgeValues(input []string, match string, index int, keep bool) []string {
 	var result []string
 
