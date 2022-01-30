@@ -32,18 +32,15 @@ func TestPart1(t *testing.T) {
 	t.Run("Sample", func(t *testing.T) {
 		t.Parallel()
 
-		r := d1.Part1(sample)
-
-		if r != ans1 {
+		if r := d1.Part1(sample); r != ans1 {
 			t.Fatalf("Expected: %v. Got: %v", ans1, r)
 		}
 	})
 
 	t.Run("Actual", func(t *testing.T) {
 		t.Parallel()
-		r := d1.Part1(input)
 
-		if r != sol1 {
+		if r := d1.Part1(input); r != sol1 {
 			t.Fatalf("Expected: %v. Got: %v", sol1, r)
 		}
 	})
@@ -55,9 +52,7 @@ func TestPart2(t *testing.T) {
 	t.Run("Sample", func(t *testing.T) {
 		t.Parallel()
 
-		r := d1.Part2(sample)
-
-		if r != ans2 {
+		if r := d1.Part2(sample); r != ans2 {
 			t.Fatalf("Expected: %v. Got: %v", ans2, r)
 		}
 	})
@@ -65,9 +60,7 @@ func TestPart2(t *testing.T) {
 	t.Run("Actual input", func(t *testing.T) {
 		t.Parallel()
 
-		r := d1.Part2(input)
-
-		if r != sol2 {
+		if r := d1.Part2(input); r != sol2 {
 			t.Fatalf("Expected: %v. Got: %v", sol2, r)
 		}
 	})

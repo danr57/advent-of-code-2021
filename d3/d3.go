@@ -62,27 +62,34 @@ func Part1(input []string) int64 {
 
 // Part2 verifies the life support rating of the submarine.
 func Part2(input []string) int64 {
-	oxygenRating := findRatings(input, true)
-	co2Rating := findRatings(input, false)
+	var (
+		oxygenRating = input
+		co2Rating    = input
+	)
 
-	return oxygenRating * co2Rating
+	for index := 0; index < len(input[0]); index++ {
+		oxygenRating = findRatings(oxygenRating, true, index)
+		co2Rating = findRatings(co2Rating, false, index)
+	}
+
+	return BinaryStrToInt64(oxygenRating[0]) * BinaryStrToInt64(co2Rating[0])
 }
 
-// findRatings counts most/least common bit and keeps only matching vals.
-func findRatings(input []string, keep bool) int64 {
-	for index := 0; index < len(input[0]); index++ {
-		count0s := 0
-		count1s := 0
+// finds most common bit at index position and purges it.
+func findRatings(input []string, keep bool, index int) []string {
+	count0s := 0
+	count1s := 0
 
-		for _, num := range input {
-			switch num[index : index+1] {
-			case "0":
-				count0s++
-			case "1":
-				count1s++
-			}
+	for _, num := range input {
+		switch num[index : index+1] {
+		case "0":
+			count0s++
+		case "1":
+			count1s++
 		}
+	}
 
+	if len(input) > 1 {
 		if count0s > count1s {
 			input = purgeValues(input, "0", index, keep)
 		} else {
@@ -90,7 +97,7 @@ func findRatings(input []string, keep bool) int64 {
 		}
 	}
 
-	return BinaryStrToInt64(input[0])
+	return input
 }
 
 func purgeValues(input []string, match string, index int, keep bool) []string {
