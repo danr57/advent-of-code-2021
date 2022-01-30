@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 
-	"github.com/danr57/advent-of-code-2022/d1"
-	"github.com/danr57/advent-of-code-2022/d2"
-	"github.com/danr57/advent-of-code-2022/d3"
+	"github.com/danr57/advent-of-code-2021/d1"
+	"github.com/danr57/advent-of-code-2021/d2"
+	"github.com/danr57/advent-of-code-2021/d3"
 )
 
 func main() {

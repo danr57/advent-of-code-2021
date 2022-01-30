@@ -4,7 +4,7 @@ import (
 	"log"
 	"testing"
 
-	"github.com/danr57/advent-of-code-2022/d2"
+	"github.com/danr57/advent-of-code-2021/d2"
 )
 
 var (
