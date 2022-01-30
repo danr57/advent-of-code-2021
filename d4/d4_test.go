@@ -14,8 +14,6 @@ var (
 	sol2 = 6804
 )
 
-//TODO: Write tests for actual results
-
 func TestPart1(t *testing.T) {
 	t.Parallel()
 
