@@ -3,7 +3,7 @@ package d1_test
 import (
 	"testing"
 
-	"github.com/danr57/advent-of-code-2022/d1"
+	"github.com/danr57/advent-of-code-2021/d1"
 )
 
 var (
