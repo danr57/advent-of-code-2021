@@ -6,6 +6,7 @@ import (
 	"github.com/danr57/advent-of-code-2022/d1"
 	"github.com/danr57/advent-of-code-2022/d2"
 	"github.com/danr57/advent-of-code-2022/d3"
+	"github.com/danr57/advent-of-code-2022/d4"
 )
 
 func main() {
@@ -17,4 +18,8 @@ func main() {
 
 	d3input := d3.ReadAndSplit("d3/input")
 	log.Printf("DAY 3 { Part 1: %v. Part 2: %v. }", d3.Part1(d3input), d3.Part2(d3input))
+
+	// draws, bob := bingomaster.ReadAndSplit("d4.input")
+
+	log.Printf("DAY 4 { Part 1: %v. Part 2: %v, }", d4.Part1(120), d4.Part2(120))
 }
