@@ -10,11 +10,11 @@ import (
 
 func main() {
 	d1input := d1.ReadAndSplit("d1/input")
-	log.Printf("===Day 1=== \nPart 1: %v \nPart 2: %v", d1.Part1(d1input), d1.Part2(d1input))
+	log.Printf("DAY 1 { Part 1: %v. Part 2: %v. }", d1.Part1(d1input), d1.Part2(d1input))
 
 	d2input := d2.ReadAndSplit("d2/input")
-	log.Printf("===Day 2=== \nPart 1: %v \nPart 2: %v", d2.Part1(d2input), d2.Part2(d2input))
+	log.Printf("DAY 2 { Part 1: %v. Part 2: %v. }", d2.Part1(d2input), d2.Part2(d2input))
 
 	d3input := d3.ReadAndSplit("d3/input")
-	log.Printf("===Day 3=== \nPart 1: %v \nPart 2: %v", d3.Part1(d3input), d3.Part2(d3input))
+	log.Printf("DAY 3 { Part 1: %v. Part 2: %v. }", d3.Part1(d3input), d3.Part2(d3input))
 }

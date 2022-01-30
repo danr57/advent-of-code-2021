@@ -47,8 +47,6 @@ func Part2(route []int) int {
 		prev = reading
 	}
 
-	log.Println(count)
-
 	return count
 }
 
