@@ -1,3 +1,4 @@
+// Package d4 contains the solution for https://adventofcode.com/2021/day/4
 package d4
 
 func Part1() int {

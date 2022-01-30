@@ -68,10 +68,9 @@ func Part2(input []string) int64 {
 	return oxygenRating * co2Rating
 }
 
+// findRatings counts most/least common bit and keeps only matching vals.
 func findRatings(input []string, keep bool) int64 {
-	inputLength := len(input[0])
-
-	for index := 0; index < inputLength; index++ {
+	for index := 0; index < len(input[0]); index++ {
 		count0s := 0
 		count1s := 0
 
@@ -84,12 +83,10 @@ func findRatings(input []string, keep bool) int64 {
 			}
 		}
 
-		if len(input) > 1 {
-			if count0s > count1s {
-				input = purgeValues(input, "0", index, keep)
-			} else {
-				input = purgeValues(input, "1", index, keep)
-			}
+		if count0s > count1s {
+			input = purgeValues(input, "0", index, keep)
+		} else {
+			input = purgeValues(input, "1", index, keep)
 		}
 	}
 
@@ -100,6 +97,12 @@ func purgeValues(input []string, match string, index int, keep bool) []string {
 	var result []string
 
 	for _, num := range input {
+		if len(input) <= 1 {
+			result = append(result, num)
+
+			break
+		}
+
 		if (num[index:index+1] == match) == keep {
 			result = append(result, num)
 		}
