@@ -25,7 +25,7 @@ func BinaryStrToInt64(in string) int64 {
 
 /* Part1 Finds most/least common digit at each index for all readings,
 returns multiplied decimal versions of these 2 values.*/
-func Part1(input []string) int {
+func Part1(input []string) int64 {
 	var gamma bytes.Buffer // most common digits per index
 
 	var epsilon bytes.Buffer // least common digits per index
@@ -57,26 +57,25 @@ func Part1(input []string) int {
 	gammaDecimal := BinaryStrToInt64(gamma.String())
 	epsilonDecimal := BinaryStrToInt64(epsilon.String())
 
-	return int(gammaDecimal * epsilonDecimal)
+	return gammaDecimal * epsilonDecimal
 }
 
 // Part2 verifies the life support rating of the submarine.
-func Part2(input []string) int {
-	var (
-		inputLength  = len(input[0])
-		newInput     = input
-		oxygenRating int
-		co2Rating    int
-	)
+func Part2(input []string) int64 {
+	oxygenRating := findRatings(input, true)
+	co2Rating := findRatings(input, false)
 
-	newInput := input
+	return oxygenRating * co2Rating
+}
+
+func findRatings(input []string, keep bool) int64 {
+	inputLength := len(input[0])
 
 	for index := 0; index < inputLength; index++ {
 		count0s := 0
-
 		count1s := 0
 
-		for _, num := range newInput {
+		for _, num := range input {
 			switch num[index : index+1] {
 			case "0":
 				count0s++
@@ -86,39 +85,27 @@ func Part2(input []string) int {
 		}
 
 		if len(input) > 1 {
-			switch {
-			case count0s > count1s:
-				newInput = purgeValues(input, "0", index)
-			case count0s < count1s:
-				newInput = purgeValues(input, "1", index)
-			case count0s == count1s:
-				newInput = purgeValues(input, "1", index)
+			if count0s > count1s {
+				input = purgeValues(input, "0", index, keep)
+			} else {
+				input = purgeValues(input, "1", index, keep)
 			}
 		}
-
-		input = newInput
-		log.Println("Input Length: ", len(input))
 	}
 
-	return len(input)
+	return BinaryStrToInt64(input[0])
 }
 
-func purgeValues(input []string, match string, index int) []string {
-	purgedEntries := 0
+func purgeValues(input []string, match string, index int, keep bool) []string {
+	var result []string
 
 	for _, num := range input {
-		// log.Println("REACHED") // TODO remove debug line
-
-		if num[index:index+1] != match {
-			input[index] = input[len(input)-1]
-			purgedEntries++
+		if (num[index:index+1] == match) == keep {
+			result = append(result, num)
 		}
 	}
 
-	log.Println("Purged entries:", purgedEntries) // TODO remove debug lines
-	log.Println("Current Input Length: ", len(input))
-
-	return input[:len(input)-purgedEntries]
+	return result
 }
 
 /* ReadAndSplit takes input file and splits line separated values

@@ -8,9 +8,9 @@ import (
 )
 
 var (
-	ans1   = 198
-	ans2   = 230
-	sample = []string{
+	ans1   int64 = 198
+	ans2   int64 = 230
+	sample       = []string{
 		"00100",
 		"11110",
 		"10110",
